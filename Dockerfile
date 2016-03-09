@@ -19,4 +19,13 @@ RUN mkdir /opt/dashing && \
     cd /opt/dashing/sweet_dashboard_project/ && \
     bundle && \
     dashing start
+
+#OR add your own dashing directory
+#ADD ./dashing /opt/
+
+#WORKDIR /opt/dashing
+#RUN bundle && \
+#  dashing start
+
+
    
