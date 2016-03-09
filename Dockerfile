@@ -10,7 +10,8 @@ RUN yum install -y ruby ruby-dev gem && \
     curl --silent --location https://rpm.nodesource.com/setup | bash -
     yum install -y nodejs
 
-
+#Exposing dashing service port on the container
+EXPOSE 3030
 
 #Create dashing run directory
 RUN mkdir /opt/dashing && \
@@ -20,12 +21,18 @@ RUN mkdir /opt/dashing && \
     bundle && \
     dashing start
 
+CMD [ "node" ]
+
 #OR add your own dashing directory
 #ADD ./dashing /opt/
 
 #WORKDIR /opt/dashing
 #RUN bundle && \
 #  dashing start
+
+#Creating entrypoint
+COPY ./docker-entrypoint.sh /
+ENTRYPOINT ["/docker-entrypoint.sh"]
 
 
    
